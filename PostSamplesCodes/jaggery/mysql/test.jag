@@ -1,0 +1,22 @@
+<%
+
+var query1  ="CREATE TABLE IF NOT EXISTS example(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), name VARCHAR(30),  age INT);";
+var query2  ="INSERT INTO example (name, age) VALUES('Jhon', '15' );";
+var query3  ="SELECT * FROM example;";
+config = {};
+		var db = new Database("jdbc:mysql://localhost:3306/test", "root", "root", config);
+try{
+db.query(query1);
+db.query(query2);
+var results = db.query(query3);
+print(results[1].name);
+}
+catch(e){
+print(e.toString());
+}
+finally{
+db.close();
+}
+
+
+%>

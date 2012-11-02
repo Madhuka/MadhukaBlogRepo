@@ -1,1 +1,1 @@
-ftest file 1
+test file

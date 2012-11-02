@@ -1,0 +1,46 @@
+<html>
+<header>
+<script src="../../../gadgets/js/container:open-views:opensearch:rpc:xmlutil:pubsub-2.js?c=1&amp;debug=1&amp;container=default" type="text/javascript"></script> 
+</header>
+<body> 
+<h2>Common Container</h2>
+ <div class="column" id="gadgetHeader"></div>
+            <div class="column" id="gadgetArea"></div>
+ 
+            <script> 
+			//	var currentView = 'default';
+
+	// ID used to associate gadget site
+	var curId = 0;
+            var urltest = "http://localhost:8080/samplecontainer/examples/ActivityStreams/prefs-example.xml"; 
+            var urltest1 = "http://www.labpixies.com/campaigns/todo/todo.xml"; 
+		//	var elem = document.getElementById("gadgetHeader"); 
+            var elem = document.getElementById("gadgetArea");                       // a DOM element to insert a gadget iframe into. 
+			var gadget = urltest1;  // a URL to the gadget XML . 
+			var container = new osapi.container.Container(); 
+			var site = container.newGadgetSite(elem); 
+//userpref 
+			var userPrefsObject = { 
+				str: 'abc', 
+				num: 123, 
+				arr: [ 'one', 'two', 'three' ] 
+			}; 
+			var renderParams = { view: 'home',width: 400, height: 200,userPrefs: userPrefsObject }; 
+			container.navigateGadget(site, gadget, {}, renderParams); 
+			
+			container.preloadGadget(gadget, function(result) {
+		    if(!result[gadget].error) {
+			console.log(result[gadget])
+			console.log(result[gadget]['modulePrefs'])
+			document.getElementById("gadgetHeader").innerHTML=result[gadget]['modulePrefs'].title;
+		  }
+
+	      //Clear Values
+	    //  newGadgetUrl.val('');
+		});
+		
+		 
+            </script> 
+            </div>
+</body>
+</html>

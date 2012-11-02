@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+  <ModulePrefs title="Publisher Gadget 01" height="150" /> 
+  <UserPref name="test000" 
+    display_name="Message" 
+    default_value="Bonjour Monde" 
+    publish="true" />  
+  <Content type="html">
+
+  <![CDATA[ 
+    <br/>
+    My Message
+    <br/><br/>
+    <table>
+      <tr>
+        <td>
+
+         Message:
+        </td>
+        <td>
+          <input type="text" id="msg" name="msg" value="">
+
+        </td>
+        <td>
+          <input type="button" name="butUpdateMsg" name="butUpdateMsg" value="Update Message" onclick="updateValue()">
+
+        </td>
+      </tr>
+    </table>
+
+    <script type="text/javascript">
+    // This publisher gadget updates the value for the test000 userpref when users click the "Update Message"
+
+    // button.
+    function updateValue() {   
+      var newMsg = _gel("msg").value;
+      prefs.set("test000", newMsg);  
+    }
+
+    // Gets and displays the publisher gadget's local test000 userpref. New userpref value is not published
+    // unless user invokes updateMsg() by clicking button.
+    var prefs = new _IG_Prefs(__MODULE_ID__);
+    var str = prefs.getString("test000");
+    _gel("msg").value = str;
+    </script>
+
+  ]]> 
+  </Content> 
+</Module>

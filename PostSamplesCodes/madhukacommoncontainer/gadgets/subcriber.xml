@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<Module>
+  <ModulePrefs title="Subscriber Gadget 01" height="150" scrolling="true"/> 
+  <UserPref name="test000" 
+    display_name="Message" 
+    default_value="Hello World" 
+    listen="true" 
+    on_change="updateMessage"  /> 
+  <Content type="html">
+
+  <![CDATA[ 
+  <div id="mydiv"></div>   
+  
+  <script type="text/javascript">
+  
+  // When the message value is updated in the publishing gadget, 
+  // the test000 userpref is updated. Refresh the message in the
+  // div to display the new value.
+  function updateMessage() {  
+    div.innerHTML = "<h1>" + prefs.getString("test000") + "</h1>";
+  }
+  
+  // Gets and displays the subscriber gadget's local test000 userpref value.
+  var prefs = new _IG_Prefs(__MODULE_ID__);  
+  var div = _gel("mydiv");
+  div.innerHTML = "<h1>" + prefs.getString("test000") + "</h1>";
+
+  </script>
+
+  ]]> 
+  </Content>
+</Module>

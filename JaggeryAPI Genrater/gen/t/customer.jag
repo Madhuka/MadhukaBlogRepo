@@ -1,0 +1,24 @@
+<%
+var db_query_customer_view = "SELECT * FROM  `customer` LIMIT 0 , 30"
+var db_query_customer_create = "CREATE TABLE  `customer` (`customer_id` INT NOT NULL AUTO_INCREMENT, `customer_name` VARCHAR( 120 ) NOT NULL, `customer_age` INT NOT NULL, `customer_out` BOOL NOT NULL DEFAULT  '1', `customer_adress` VARCHAR( 120 ) NOT NULL,PRIMARY KEY (  `customer_id` ))";
+
+function db_query_customer_delet(customer_id) {
+var outStr = "DELETE FROM `customer` WHERE `customer_id` = " + customer_id + " LIMIT 1";
+return outStr;
+}
+
+function db_query_customer_get(customer_id) {
+var outStr = "SELECT *  FROM `customer` WHERE `customer_id` = " + customer_id + " LIMIT 1";
+return outStr;
+}
+
+function db_query_customer_add(customer_id,customer_name,customer_age,customer_out,customer_adress) {
+var outStr = "INSERT INTO  `customer` (`customer_`id, `customer_name`, `customer_age`, `customer_out`, `customer_adress`,`customer_create_time` ,`customer_modified_time`)VALUES ("+customer_id+",'"+customer_name+"','"+customer_age+"','"+customer_out+"','"+customer_adress+"',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);";
+return outStr;
+}
+
+function db_query_customer_update(customer_id,customer_name,customer_age,customer_out,customer_adress) {
+var outStr = "UPDATE  `customer` SET  `customer_name` =  '"+customer_name+"',`customer_age` =  '"+customer_age+"',`customer_out` =  '"+customer_out+"',`customer_adress` =  '"+customer_adress+"',`student_modified_time` = CURRENT_TIMESTAMP WHERE  `customer_id` =" + customer_id + " LIMIT 1 ;";
+return outStr;
+}
+%>

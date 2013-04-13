@@ -1,0 +1,6 @@
+<%
+
+config = {}; 
+        var db = new Database("jdbc:mysql://localhost:3306/test", "root", "root", config); 
+
+%>

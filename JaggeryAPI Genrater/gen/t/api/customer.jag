@@ -1,0 +1,37 @@
+<%
+
+include("../model/dbinit.jag");
+include("../model/customer.jag");
+include("../controller/customer.jag");
+
+ var action = request.getParameter('action');
+ var customerId = request.getParameter('customerId');
+ var customerName = request.getParameter('customerName');
+ var customerAge = request.getParameter('customerAge');
+ var customerOut = request.getParameter('customerOut');
+ var customerAdress = request.getParameter('customerAdress');
+
+switch(action) {
+case "listcustomer":
+		print(listcustomer());
+		break;
+	case "addcustomer":
+		print(addcustomer(customerName, customerAge, customerOut, customerAdress));
+		break;
+	case "updatecustomer":
+		print(updatecustomer(customerId,customerName, customerAge, customerOut, customerAdress));
+		break;
+	case "deletcustomer":
+		print(deletcustomer(customerId));
+		break;
+	case "getstudent":
+		print(getcustomer(customerId));
+		break;
+	case "settabel":
+		print(settabel());
+		break;
+	default:
+		print(invokeError("customer action not define"));
+}
+
+%>

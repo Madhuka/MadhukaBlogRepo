@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/model.js"></script>
+		<script src="js/api.js"></script>
+		<script src="js/controller.js"></script>
+		<script src="js/util.js"></script>
+		<title>Genrate</title>
+	</head>
+	<body>
+		<h1>Jaggery App Genrater 0.1</h1>
+		API name:
+		<input type="text" name="fname" id="apiName" value="customer">
+		<br>
+		API attributes:
+		<input type="text" name="lname" id="apiAttribute" size="150" value='{"id":"int","name":"string","age":"int","out":"bool","adress":"string"}'>
+		<button type="button" id="genrateButton" onclick="Gen.genrate();">
+			Genrate
+		</button>
+		<br>
+		<textarea rows="10" cols="150" id="modelText"></textarea>
+<br>		<textarea rows="10" cols="150" id="apiText"/>
+		</textarea>
+		<br>		<textarea rows="10" cols="150" id="controllerText"/>
+		</textarea>
+	</body>
+</html>

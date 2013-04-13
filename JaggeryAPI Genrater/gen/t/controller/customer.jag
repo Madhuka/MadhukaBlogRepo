@@ -1,0 +1,91 @@
+<%
+
+function listcustomer() {
+	var db_qury = db_query_customer_view;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}
+
+function settabel() {
+	var db_qury = db_query_studnet_create;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}
+
+function addcustomer(customerName, customerAge, customerOut, customerAdress) {
+	log.info("add customer");
+	if(customerName != null && customerAge != null && customerOut != null && customerAdress != null ){
+	var db_qury = db_query_customer_add(null ,customerName, customerAge, customerOut, customerAdress);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter customerName, customerAge, customerOut, customerAdress");
+	}
+}
+
+function updatecustomer(customerId,customerName, customerAge, customerOut, customerAdress) {
+	log.info("update customer");
+	if(customerId != null  && customerName != null && customerAge != null && customerOut != null && customerAdress != null ){
+	var db_qury = db_query_customer_update(customerId ,customerName, customerAge, customerOut, customerAdress);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter customerId, customerName, customerAge, customerOut, customerAdress");
+	}
+}
+
+function deletcustomer(customerId) {
+	log.info("delet customer "+studentId);
+	if(customerId != null ){
+	var db_qury = db_query_customer_delet(customerId);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter customerId");
+	}
+}
+
+function getcustomer(customerId) {
+	log.info("get customer "+studentId);
+	if(customerId != null ){
+	var db_qury = db_query_customerget(customerId);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter customerId");
+	}
+}
+
+function invokeError(msg) {
+	log.info(msg);
+	return {
+		"error" : true,
+		"errorMsg" : msg
+	};
+}
+
+%>

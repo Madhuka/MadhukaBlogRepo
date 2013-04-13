@@ -1,0 +1,54 @@
+<%
+var db_query_customer_view = "SELECT * FROM  `customer` LIMIT 0 , 30"
+var db_query_customer_create = "CREATE TABLE  `customer` (`customer_id` INT NOT NULL AUTO_INCREMENT, `customer_name` VARCHAR( 120 ) NOT NULL, `customer_age` INT NOT NULL, `customer_out` BOOL NOT NULL DEFAULT  '1', `customer_adress` VARCHAR( 120 ) NOT NULL,PRIMARY KEY (  `customer_id` ))";
+
+function listcustomer() {
+	var db_qury = db_query_customer_view;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}
+
+function settabel() {
+	var db_qury = db_query_studnet_create;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}
+
+function addcustomer(customer_id,customer_name,customer_age,customer_out,customer_adress) {
+	log.info("add customer");
+	if(`customer_`id, `customer_name`, `customer_age`, `customer_out`, `customer_adress`,`customer_create_time` ,`customer_modified_time`){
+	var db_qury = db_query_customer_add(null ,customer_id,customer_name,customer_age,customer_out,customer_adress);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter customer_id,customer_name,customer_age,customer_out,customer_adress");
+	}
+}
+
+function updatecustomer(customer_id,customer_name,customer_age,customer_out,customer_adress,`customer_name` =  '"+customer_name+"',`customer_age` =  '"+customer_age+"',`customer_out` =  '"+customer_out+"',`customer_adress` =  '"+customer_adress+"',`student_modified_time` = CURRENT_TIMESTAMP) {
+	log.info("update customer");
+	if(undefined && undefined){
+	var db_qury = db_query_customer_update(customer_id,customer_name,customer_age,customer_out,customer_adress ,`customer_name` =  '"+customer_name+"',`customer_age` =  '"+customer_age+"',`customer_out` =  '"+customer_out+"',`customer_adress` =  '"+customer_adress+"',`student_modified_time` = CURRENT_TIMESTAMP);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter customer_id,customer_name,customer_age,customer_out,customer_adress, `customer_name` =  '"+customer_name+"',`customer_age` =  '"+customer_age+"',`customer_out` =  '"+customer_out+"',`customer_adress` =  '"+customer_adress+"',`student_modified_time` = CURRENT_TIMESTAMP");
+	}
+}
+%>

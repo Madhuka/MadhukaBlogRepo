@@ -9,6 +9,8 @@ var apiStr = api(apiName,jQuery.parseJSON(apiAttribute));
 $("#apiText").val(apiStr);
 var controllerStr = controller(apiName,jQuery.parseJSON(apiAttribute));
 $("#controllerText").val(controllerStr);
+var htmlStr = html(apiName,jQuery.parseJSON(apiAttribute));
+$("#htmlText").val(htmlStr);
 
 }
 }

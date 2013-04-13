@@ -24,7 +24,7 @@ case "listcustomer":
 	case "deletcustomer":
 		print(deletcustomer(customerId));
 		break;
-	case "getstudent":
+	case "getcustomer":
 		print(getcustomer(customerId));
 		break;
 	case "settabel":

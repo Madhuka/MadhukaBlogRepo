@@ -22,7 +22,7 @@ function controller(tableName, arg) {
 		}
 	}
 	fs1 += buildf1(tableName);
-	fs2 += buildf2();
+	fs2 += buildf2(tableName);
 	fs3 += buildf3(tableName, sa2, sa4);
 	fs4 += buildf4(tableName, sa1, sa2, sa3, sa4);
 	fs5 += buildf5(tableName, sa1, sa3);
@@ -40,9 +40,9 @@ function buildf1(tableName) {
 	return outStr;
 }
 
-function buildf2() {
+function buildf2(tableName) {
 	var outStr = '\n';
-	outStr += 'function settabel() {' + '\n	var db_qury = db_query_studnet_create;' + '\n	log.info(db_qury);' + '\n	var results = db.query(db_qury);' + '\n	return {' + '\n		"error" : false,' + '\n		"results" : results' + '\n	};' + '\n}';
+	outStr += 'function settabel() {' + '\n	var db_qury = db_query_'+tableName+'_create;' + '\n	log.info(db_qury);' + '\n	var results = db.query(db_qury);' + '\n	return {' + '\n		"error" : false,' + '\n		"results" : results' + '\n	};' + '\n}';
 	return outStr;
 }
 
@@ -60,13 +60,13 @@ function buildf4(tableName, s1, s2, s3, s4) {
 
 function buildf5(tableName, s1, s3) {
 	var outStr = '\n';
-	outStr += 'function delet' + tableName + '(' + s1 + ') {' + '\n	log.info("delet ' + tableName + ' "+studentId);' + '\n	if(' + s3 + '){' + '\n	var db_qury = db_query_' + tableName + '_delet(' + s1 + ');' + '\n	log.info(db_qury);' + '\n	var results = db.query(db_qury);' + '\n	return {' + '\n		"error" : false,' + '\n		"results" : results' + '\n	};' + '\n	}else {' + '\n		return invokeError("Please enter ' + s1 + '");' + '\n	}' + '\n}';
+	outStr += 'function delet' + tableName + '(' + s1 + ') {' + '\n	log.info("delet ' + tableName + ' ");' + '\n	if(' + s3 + '){' + '\n	var db_qury = db_query_' + tableName + '_delet(' + s1 + ');' + '\n	log.info(db_qury);' + '\n	var results = db.query(db_qury);' + '\n	return {' + '\n		"error" : false,' + '\n		"results" : results' + '\n	};' + '\n	}else {' + '\n		return invokeError("Please enter ' + s1 + '");' + '\n	}' + '\n}';
 	return outStr;
 }
 
 function buildf6(tableName, s1, s3) {
 	var outStr = '\n';
-	outStr += 'function get' + tableName + '(' + s1 + ') {' + '\n	log.info("get ' + tableName + ' "+studentId);' + '\n	if(' + s3 + '){' + '\n	var db_qury = db_query_' + tableName + 'get(' + s1 + ');' + '\n	log.info(db_qury);' + '\n	var results = db.query(db_qury);' + '\n	return {' + '\n		"error" : false,' + '\n		"results" : results' + '\n	};' + '\n	}else {' + '\n		return invokeError("Please enter ' + s1 + '");' + '\n	}' + '\n}';
+	outStr += 'function get' + tableName + '(' + s1 + ') {' + '\n	log.info("get ' + tableName + ' ");' + '\n	if(' + s3 + '){' + '\n	var db_qury = db_query_' + tableName + '_get(' + s1 + ');' + '\n	log.info(db_qury);' + '\n	var results = db.query(db_qury);' + '\n	return {' + '\n		"error" : false,' + '\n		"results" : results' + '\n	};' + '\n	}else {' + '\n		return invokeError("Please enter ' + s1 + '");' + '\n	}' + '\n}';
 	return outStr;
 }
 

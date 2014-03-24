@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Promo App</title>
+</head>
+<body>
+	<h2>PromoApp</h2>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<p>For WSO2Con Aisa 2014.</p>
+	<div class="row">
+  <div class="col-xs-6 col-md-4"></div>
+  <div class="col-xs-6 col-md-4">
+	<input type="text" id="uid" placeholder="user ID">
+	<br>
+	<div id="d1"></div>
+	<input type="button" class="shout_btn" onclick="PromoApp.cardlist()" value="My Card List"/><br>
+	<input type="text" id="lat" placeholder="longitude">
+	<br>
+	<input type="text" id="lon" placeholder="latitude">
+	<br>
+	<input type="button" class="shout_btn" onclick="PromoApp.shopname()" value="What is this Shop"/>
+	<div id="d2"></div>
+	<input type="button" class="shout_btn" onclick="PromoApp.promocards()" value="Promotions"/>
+	<div id="d3"></div>
+	<input type="button" class="shout_btn" onclick="PromoApp.pickmyCard()" value="Check"/>
+	<div id="d4"></div>
+	
+	</div>
+  <div class="col-xs-6 col-md-4"></div>
+</div>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/promo-app.js"></script>
+	<script src="js/util.js"></script>
+</body>
+</html>

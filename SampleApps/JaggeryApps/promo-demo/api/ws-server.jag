@@ -1,0 +1,33 @@
+<%
+var log = new Log();
+var card = 'SLbank';
+	application.put('listPromo',card);
+	
+	//ws on text
+	webSocket.ontext = function (data) {
+		log.info('Client Sent : ' + data);
+	};
+
+	//ws on binary
+	webSocket.onbinary = function (stream) {
+		log.info('Client Streamed : ' + stream.toString());
+	};
+
+
+	//ws open 
+	webSocket.onopen = function (outstre) {
+		log.info(this.toString());		
+		var promolist = application.get('listPromo');		
+		var ws = this;
+		setTimeout(function () {
+		    	var currentdate = new Date();
+		        log.info("Server send message "+promolist+" on "+currentdate);
+		        ws.send(""+promolist);
+		    }, 500);
+	};
+
+	webSocket.onclose = function (status) {
+		log.info('Client Streamed close');		
+	};
+
+	%>

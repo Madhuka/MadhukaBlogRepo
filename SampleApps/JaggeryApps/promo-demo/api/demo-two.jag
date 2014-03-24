@@ -1,0 +1,23 @@
+<%
+
+//make REST call for http://localhost:9763/service/api/location/1/1/
+
+var invokeLocationService = function (longitude,latitude) {
+    var log = new Log('Promo App - LocationService ');
+    var url = 'http://localhost:9763/service/api/location/'+longitude+'/'+latitude+'/';
+   var shopname = get(url, null ,"json");
+    return  shopname;
+   
+}
+var uriMatcher = new URIMatcher(request.getRequestURI());
+var log = new Log('Promo-ui-demo-two');
+//Provide a pattern to be matched against the URL
+if(uriMatcher.match('/{dir0}/{serive}/{log}/{lat}/')) {
+    //If pattern matches, elements can be accessed from their keys
+    log.info("log element is : " + uriMatcher.elements().log);
+    log.info("lat element is : " + uriMatcher.elements().lat);
+    print(invokeLocationService(uriMatcher.elements().log,uriMatcher.elements().lat));
+}
+
+
+%>

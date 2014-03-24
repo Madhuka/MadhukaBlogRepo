@@ -1,0 +1,44 @@
+<%
+var invokeGetCardList = function (uid) {
+    var log = new Log('Promo App');
+    var ws = require('ws');
+
+    var cardlist = new ws.WSRequest();
+    var options = new Array();
+    options.useSOAP = 1.2;
+    options.useWSA = 1.0;
+    options.action = "urn:CadList";
+    var payload = '<p:CadList xmlns:p="http://cadservice.bank.org">' + '<xs:userId xmlns:xs="http://cadservice.bank.org">' + uid + '</xs:userId>' + '</p:CadList>';
+    var result;
+
+    try {
+        cardlist.open(options, "http://localhost:9764/services/CadService", false);
+        cardlist.send(payload);
+        result = cardlist.responseE4X;
+        var passCard = result.*::['return'].text();
+        var myCardlist = new Array();
+        for (var i = 0; i < passCard.length(); i++) {
+            myCardlist[i] = passCard[i];
+        }
+    } catch (e) {
+        log.error(e.toString());
+        return e.toString();
+    }
+    return {
+        'mycard': myCardlist
+    };
+}
+//reading header of the request - Dyanamic by header or parameter
+//var uid = request.getHeader("UserID");
+var uid = request.getParameter("UserID");
+if(uid != null){
+	print(invokeGetCardList(uid));
+}
+else{
+	print(
+	{
+		error:true,
+		msg:'uid is not send'
+	});
+}
+%>

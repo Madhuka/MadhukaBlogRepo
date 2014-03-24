@@ -29,7 +29,7 @@
             
             $('#connect').click(function () {
             	if(!userCheck()){return;}
-                var url = 'ws://localhost:9763/ws/server.jag';
+                var url = 'ws://localhost:9763/chatroom/server.jag';
 
                 if ('WebSocket' in window) {
                     ws = new WebSocket(url);

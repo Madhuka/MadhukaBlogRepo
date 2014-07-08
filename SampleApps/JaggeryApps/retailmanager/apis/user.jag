@@ -1,0 +1,237 @@
+<%
+include("./model/dbinit.jag");
+var action, data, message, exists, error = false, log = new Log(), user = require('../modules/user.js'), matcher = new URIMatcher(request.getRequestURI());
+var carbon = require('carbon');
+var log = new Log();
+var configs = require('../usermgt.js').config();
+var server = require('../modules/server.js');
+
+server.init(configs);
+var user = require('../modules/user.js');
+user.init(configs);
+var un = request.getParameter('username'), psw = request.getParameter('password');
+callAPI();
+log.info('Called User API in library');
+
+
+
+function getSellerByName(seller_name) {
+	log.info("get seller ID by name for "+seller_name);	
+	var db_qury = "SELECT seller_id  FROM `seller` WHERE `seller_name` LIKE '" + seller_name + "' LIMIT 1";
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results[0].seller_id
+	};	
+}
+
+
+function callAPI() {
+	if(matcher.match('/{context}/apis/user/{action}')) {
+		action = matcher.elements().action;
+		log.info(action);
+		switch (action) {
+			case 'login':
+				try {					
+					log.info("action - Login");
+					log.info(request.getMethod());
+					log.info(request.getQueryString());
+					username = request.getHeader('username')
+					password = request.getHeader('password')
+					if(username == null && password == null ){
+					username = request.getParameter('username');
+					password = request.getParameter('password');
+					}
+					log.info(username);
+					log.info(password);
+					error = !user.login(username, password);
+					log.info(error);
+					if(error) {
+						message = 'Invalid username or password.';
+					} else {
+					    log.info(username+ ' is added in to session in retail manager server');
+					    session.put('LoggedInUser', username);
+						message = 'Login success';
+						var sellerID = getSellerByName(username).results;						
+						var datarole = user.getRoles(username);
+						session.put('LoggedInUserRoles', datarole);
+						log.info(datarole);
+					}
+				} catch (e) {
+					log.error(e);
+					error = true;
+					message = e.message;
+				}
+				print({
+					error : error,
+					message : message,
+					username : username,
+					sellerId : sellerID
+				});
+				break;
+			//  return;
+			case 'logout':
+				try {
+					user.logout();
+					 session.put('LoggedInUser', '');
+					 session.put('LoggedInUserRoles', '');
+					 session.invalidate();
+					 log.info('session.invalidate();');
+					message = "Logout success"
+				} catch (e) {
+					log.error(e);
+					error = true;
+					message = e.message;
+				}
+				print({
+					error : error,
+					message : message
+				});
+				//  return;
+				break;
+			case 'signup':
+				try {
+					log.info(un + psw);
+					user.register(request.getParameter('username'), request.getParameter('password'));
+					message = "Signup was success";
+				} catch (e) {
+					log.error(e);
+					error = true;
+					message = e.message;
+				}
+				print({
+					error : error,
+					message : message
+				});
+				//    return;
+				break;
+			case 'register':
+				log.info('user api calling for register-user...');
+				try {
+					
+					user = require('../modules/user.js').current();
+					if(!user) {
+						log.info('user api calling for register-user.x..');
+						error = true;
+						response.sendError(401, 'Unauthorized');
+						message = "Unauthorized";
+
+						return;
+					}
+					log.info('user api calling for register-user.xxx..');
+					var tmpuser = require('../modules/user.js');
+					log.info(request.getHeader('username'));
+					tmpuser.registerNew(request.getHeader('username'), request.getHeader('password'));
+					message = "Registered successfully";
+					
+				} catch (e) {
+					log.error(e);
+					error = true;
+					message = e.message;
+				}
+				print({
+					error : error,
+					message : message
+				});
+				//    return;
+				break;
+			case 'exists':
+				try {
+					data = parse(request.getContent());
+					exists = user.userExists(data.username);
+					if(!exists) {
+						message = 'Username ' + data + ' has already taken.';
+
+					}
+
+				} catch (e) {
+					log.error(e);
+					error = true;
+					message = e.message;
+				}
+				print({
+					error : error,
+					exists : exists,
+					message : message
+				});
+
+				break;
+			case 'remove':
+				try {
+					data = request.getHeader('username')
+					exists = user.userExists(data);
+					log.info(data + "xxxxxxxxxxxxxxxxxxxxxxx" + exists)
+					if(!exists) {
+						message = 'Username ' + data + ' is not existing';
+					} else {
+						user.removeUser(data);
+						message = "User " + data + " is removed."
+					}
+				} catch (e) {
+					log.error(e);
+					error = true;
+					message = e.message;
+				}
+				print({
+					error : error,
+					exists : exists,
+					message : message
+				});
+
+				break;
+
+			case 'all':
+				try {
+					data = user.listUsers();
+					message = "list of Users";
+				} catch(e) {
+					log.error(e);
+					error = true;
+					message = e.message;
+				}
+				print({
+					error : error,
+					exists : exists,
+					message : message,
+					data : {
+						userlist : data
+					}
+				});
+
+				break;
+				
+			case 'getRoles':
+			try {
+				username = request.getHeader('username')
+				user = require('../modules/user.js').current();
+				log.info(username);
+				data = user.getRoles(username);
+				message = "list of Rolse of current Users";
+			} catch(e) {
+				log.error(e);
+				error = true;
+				message = e.message;
+			}
+			print({
+				error : error,
+				exists : exists,
+				message : message,
+				data : {
+					rolelist : data
+				}
+			});
+
+			break;
+
+
+
+		}
+
+		//  return;
+	} else {
+		response.sendError(404, 'API Endpoint Not Found');
+	}
+}
+
+%>

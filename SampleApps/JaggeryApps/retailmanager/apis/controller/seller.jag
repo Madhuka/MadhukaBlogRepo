@@ -1,0 +1,91 @@
+<%
+
+function listseller() {
+	var db_qury = db_query_seller_view;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}
+
+function settabel() {
+	var db_qury = db_query_seller_create;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}
+
+function addseller(sellerName, sellerCompany, sellerAddress, sellerTelphone, sellerMobile, sellerNIC, sellerPhoneMIME, sellerEmail, sellerLocation, sellerExtra1, sellerExtra2, sellerExtra3, sellerOut) {
+	log.info("add seller name "+ sellerName);
+	if(sellerName != null && sellerCompany != null && sellerAddress != null && sellerTelphone != null && sellerMobile != null && sellerNIC != null && sellerPhoneMIME != null && sellerEmail != null && sellerLocation != null && sellerOut != null ){
+	var db_qury = db_query_seller_add(null ,sellerName, sellerCompany, sellerAddress, sellerTelphone, sellerMobile, sellerNIC, sellerPhoneMIME, sellerEmail, sellerLocation, null, 0, null, sellerOut);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter sellerName, sellerCompany, sellerAddress, sellerTelphone, sellerMobile, sellerNIC, sellerPhoneMIME, sellerEmail, sellerLocation, sellerOut");
+	}
+}
+
+function updateseller(sellerId,sellerName, sellerCompany, sellerAddress, sellerTelphone, sellerMobile, sellerNIC, sellerPhoneMIME, sellerEmail, sellerLocation, sellerExtra1, sellerExtra2, sellerExtra3, sellerOut) {
+	log.info("update seller");
+	if(sellerId != null  && sellerName != null && sellerCompany != null && sellerAddress != null && sellerTelphone != null && sellerMobile != null && sellerNIC != null && sellerPhoneMIME != null && sellerEmail != null && sellerLocation != null && sellerOut != null ){
+	var db_qury = db_query_seller_update(sellerId ,sellerName, sellerCompany, sellerAddress, sellerTelphone, sellerMobile, sellerNIC, sellerPhoneMIME, sellerEmail, sellerLocation, null, 0, null, sellerOut);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter sellerId, sellerName, sellerCompany, sellerAddress, sellerTelphone, sellerMobile, sellerNIC, sellerPhoneMIME, sellerEmail, sellerLocation, sellerOut");
+	}
+}
+
+function deletseller(sellerId) {
+	log.info("delet seller ");
+	if(sellerId != null ){
+	var db_qury = db_query_seller_delet(sellerId);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter sellerId");
+	}
+}
+
+function getseller(sellerId) {
+	log.info("get seller ");
+	if(sellerId != null ){
+	var db_qury = db_query_seller_get(sellerId);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter sellerId");
+	}
+}
+
+function invokeError(msg) {
+	log.info(msg);
+	return {
+		"error" : true,
+		"errorMsg" : msg
+	};
+}
+
+%>

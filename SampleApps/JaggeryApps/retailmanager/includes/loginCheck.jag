@@ -1,0 +1,13 @@
+<% 
+var log = new Log('library.page.index');
+if(session.get('LoggedInUser') == null){
+    log.info('User have not logined ');   
+    log.info(session.get('LoggedInUser'));
+    response.sendRedirect('./login.jag');
+}else{
+    
+    log.info('User have logined ');
+    log.info(session.get('LoggedInUser'));
+    
+}
+%>

@@ -1,0 +1,26 @@
+{
+    "assets": ["subjects", "class"],
+    "assetsUrlPrefix": "/assets",
+    "assetUrlPrefix": "/asset",
+    "assetsPageSize": 16,
+    "commentsPageSize": 10,
+    "server": {
+        "https": "%https.host%/admin",
+        "http": "%http.host%"
+    },
+    "roles": {
+        "samsung_manager": {
+        }
+    },
+    "user": {
+        "username": "admin",
+        "password": "admin"
+    },
+    "userRoles": ["samsung_manager"],
+    "permissions": {
+        "login": {
+            "/permission/admin/login": ["ui.execute"]
+        }
+    }
+    
+}

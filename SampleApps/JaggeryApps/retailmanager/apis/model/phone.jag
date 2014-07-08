@@ -1,0 +1,70 @@
+<%
+var db_query_phone_view = "SELECT * FROM  `phone` LIMIT 0 , 500";
+var db_query_phone_create = "CREATE TABLE  `phone` (`phone_id` INT NOT NULL AUTO_INCREMENT, `phone_name` VARCHAR( 120 ) NOT NULL, `phone_IMEI` VARCHAR( 120 ) NOT NULL, `phone_type` VARCHAR( 120 ) NOT NULL, `phone_detail` VARCHAR( 120 ) NOT NULL, `phone_original` BOOL NOT NULL DEFAULT  '1', `phone_isSold` BOOL NOT NULL DEFAULT  '1', `phone_sellerId` INT NOT NULL, `phone_customerName` VARCHAR( 120 ) NOT NULL, `phone_customerTel` VARCHAR( 120 ) NOT NULL, `phone_customerNIC` VARCHAR( 120 ) NOT NULL, `phone_details` VARCHAR( 120 ) NOT NULL, `phone_extra1` VARCHAR( 120 ) NOT NULL, `phone_extra2` VARCHAR( 120 ) NOT NULL, `phone_extra3` VARCHAR( 120 ) NOT NULL, `phone_purchasedDate` VARCHAR( 120 ) NOT NULL, `phone_sold_time` TIMESTAMP ,`phone_create_time` TIMESTAMP NOT NULL ,`phone_modified_time` TIMESTAMP NOT NULL ,PRIMARY KEY (  `phone_id` ),UNIQUE (`phone_IMEI`) )";
+
+function db_query_phone_delet(phone_id) {
+var outStr = "DELETE FROM `phone` WHERE `phone_id` = " + phone_id + " LIMIT 1";
+return outStr;
+}
+
+function db_query_phone_get(phone_id) {
+var outStr = "SELECT *  FROM `phone` WHERE `phone_id` = " + phone_id + " LIMIT 1";
+return outStr;
+}
+
+//get phone details from IMEI
+function db_query_phone_get_byimei(phoneIMEI) {
+var outStr = "SELECT *  FROM `phone` WHERE `phone_IMEI` LIKE '" + phoneIMEI + "' LIMIT 1";
+return outStr;
+}
+
+function db_query_phone_add(phone_id,phone_name,phone_IMEI,phone_type,phone_detail,phone_original,phone_isSold,phone_sellerId,phone_customerName,phone_customerTel,phone_customerNIC,phone_details,phone_extra1,phone_extra2,phone_extra3,phone_purchasedDate,phone_purchasedYear,phone_purchasedMonth,phone_purchasedDay,phone_soldYear,phone_soldMonth,phone_soldDay) {
+var outStr = "INSERT INTO  `phone` (`phone_id`, `phone_name`, `phone_IMEI`, `phone_type`, `phone_detail`, `phone_original`, `phone_isSold`, `phone_sellerId`, `phone_customerName`, `phone_customerTel`, `phone_customerNIC`, `phone_details`, `phone_extra1`, `phone_extra2`, `phone_extra3`, `phone_purchasedDate`, `phone_purchasedYear`, `phone_purchasedMonth`, `phone_purchasedDay`, `phone_soldYear`, `phone_soldMonth`, `phone_soldDay`,`phone_create_time` ,`phone_modified_time`)VALUES ("+phone_id+",'"+phone_name+"','"+phone_IMEI+"','"+phone_type+"','"+phone_detail+"','"+phone_original+"','"+phone_isSold+"','"+phone_sellerId+"','"+phone_customerName+"','"+phone_customerTel+"','"+phone_customerNIC+"','"+phone_details+"','"+phone_extra1+"','"+phone_extra2+"','"+phone_extra3+"','"+phone_purchasedDate+"','"+phone_purchasedYear+"','"+phone_purchasedMonth+"','"+phone_purchasedDay+"','"+phone_soldYear+"','"+phone_soldMonth+"','"+phone_soldDay+"',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);";
+return outStr;
+}
+
+function db_query_phone_update(phone_id,phone_name,phone_IMEI,phone_type,phone_detail,phone_original,phone_isSold,phone_sellerId,phone_customerName,phone_customerTel,phone_customerNIC,phone_details,phone_extra1,phone_extra2,phone_extra3,phone_purchasedDate,phone_purchasedYear,phone_purchasedMonth,phone_purchasedDay,phone_soldYear,phone_soldMonth,phone_soldDay) {
+var outStr = "UPDATE  `phone` SET  `phone_name` =  '"+phone_name+"',`phone_IMEI` =  '"+phone_IMEI+"',`phone_type` =  '"+phone_type+"',`phone_detail` =  '"+phone_detail+"',`phone_original` =  '"+phone_original+"',`phone_isSold` =  '"+phone_isSold+"',`phone_sellerId` =  '"+phone_sellerId+"',`phone_customerName` =  '"+phone_customerName+"',`phone_customerTel` =  '"+phone_customerTel+"',`phone_customerNIC` =  '"+phone_customerNIC+"',`phone_details` =  '"+phone_details+"',`phone_extra1` =  '"+phone_extra1+"',`phone_extra2` =  '"+phone_extra2+"',`phone_extra3` =  '"+phone_extra3+"',`phone_purchasedDate` =  '"+phone_purchasedDate+"',`phone_purchasedYear` =  '"+phone_purchasedYear+"',`phone_purchasedMonth` =  '"+phone_purchasedMonth+"',`phone_purchasedDay` =  '"+phone_purchasedDay+"',`phone_soldYear` =  '"+phone_soldYear+"',`phone_soldMonth` =  '"+phone_soldMonth+"',`phone_soldDay` =  '"+phone_soldDay+"',`phone_modified_time` = CURRENT_TIMESTAMP WHERE  `phone_id` =" + phone_id + " LIMIT 1 ;";
+return outStr;
+}
+//addons db_query_phone_orignal_update
+function db_query_phone_orignal_update(phone_id) {
+var phone_original = true;
+var outStr = "UPDATE  `phone` SET  `phone_original` =  "+phone_original+", `phone_modified_time` = CURRENT_TIMESTAMP  WHERE  `phone_id` =" + phone_id + " LIMIT 1 ;";
+return outStr;
+}
+
+function db_query_phone_notorignal_update(phone_id) {
+var phone_original = false;
+var outStr = "UPDATE  `phone` SET  `phone_original` =  "+phone_original+", `phone_modified_time` = CURRENT_TIMESTAMP WHERE  `phone_id` =" + phone_id + " LIMIT 1 ;";
+return outStr;
+}
+
+//mark as sold and not sold
+function db_query_phone_sell(phone_id) {
+var phone_isSold = true;
+var outStr = "UPDATE  `phone` SET  `phone_isSold` =  "+phone_isSold+",  `phone_sold_time` = CURRENT_TIMESTAMP WHERE  `phone_id` =" + phone_id + " LIMIT 1 ;";
+return outStr;
+}		
+//sell phone
+function db_query_sell_phone(phoneIMEI,cn,cc) {
+var phone_isSold = true;
+var outStr = "UPDATE  `phone` SET  `phone_isSold` =  "+phone_isSold+", `phone_customerName` = '"+cn+"', `phone_customerTel` = '"+cc+"',  `phone_sold_time` = CURRENT_TIMESTAMP WHERE  `phone_IMEI` LIKE '" + phoneIMEI + "' LIMIT 1 ;";
+return outStr;
+}	
+
+function db_query_phone_notsell(phone_id) {
+var phone_isSold = false;
+var outStr = "UPDATE  `phone` SET  `phone_isSold` =  "+phone_isSold+",  `phone_sold_time` = NULL WHERE  `phone_id` =" + phone_id + " LIMIT 1 ;";
+return outStr;
+}	
+
+
+
+//for reportting
+
+function db_query_getphonebysaler(phone_sellerId) {
+var outStr = "SELECT * FROM `phone` WHERE `phone_sellerId` = " + phone_sellerId + " LIMIT 30";
+return outStr;
+}
+%>

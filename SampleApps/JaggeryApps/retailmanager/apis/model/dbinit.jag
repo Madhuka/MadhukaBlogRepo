@@ -1,0 +1,7 @@
+<%
+var log = new Log('retailmanager api');
+//retailmanager
+config = {}; 
+	  var db = new Database("jdbc:mysql://localhost:3306/phone", "root", "", config); 
+
+%>

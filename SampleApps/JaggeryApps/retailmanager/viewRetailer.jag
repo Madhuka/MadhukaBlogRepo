@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="./dist/ico/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./dist/css/jumbotron.css" rel="stylesheet">
+    <title>Retail Manager 1.0</title>
+<% 
+include('/includes/loginCheck.jag');
+%>
+    
+  </head>
+
+  <body>
+<% 
+include('/includes/topNavi.jag');
+%>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Users</h2>     
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row" ng-controller="viewRetailers">
+        <div class="col-md-6">   
+        	<a class="btn btn-info" href="./retailers.jag">List All Phone Retailers</a>
+        	<a class="btn btn-info" href="./phones.jag">List All Phones</a>
+			<br>		    
+
+			<table class="table table-hover">
+				  <tbody>
+					<tr>
+					  <td><b>Name :</b></td>
+					  <td><b>{{seller.seller_name}}</b></td>					  					
+					</tr>				
+					<tr>
+					  <td>Company :</td>
+					  <td>{{seller.seller_company}}</td>					
+					</tr>
+					<tr>
+					  <td>Address :</td>
+					  <td>{{seller.seller_address}}</td>					
+					</tr>
+					<tr>
+					  <td>Telphone :</td>
+					  <td>{{seller.seller_telphone}}</td>					
+					</tr>
+					<tr>
+					  <td>Mobile :</td>
+					  <td>{{seller.seller_mobile}}</td>					
+					</tr>
+					<tr>
+					  <td>NIC :</td>
+					  <td>{{seller.seller_NIC}}</td>					
+					</tr>	
+					<tr>
+					  <td>Phone MIME :</td>
+					  <td>{{seller.seller_phoneMIME}}</td>					
+					</tr>	
+					<tr>
+					  <td>Email :</td>
+					  <td>{{seller.seller_email}}</td>					
+					</tr>	
+					<tr>
+					  <td>Location :</td>
+					  <td>{{seller.seller_location}}</td>					
+					</tr>					
+					</tbody>
+				</table>
+				<a class="btn btn-info" href="./retailers.jag">List All Phone Retailers</a>
+        </div>       
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Samsung 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script src="./dist/js/jquery.min.js"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/alertify.min.js"></script>
+    <script src="./dist/js/angular.js"></script>
+    <script src="./dist/js/retailers.js"></script>
+    <script src="./dist/js/util.js"></script>
+    <script src="./dist/js/usermgt.js"></script>
+  </body>
+</html>

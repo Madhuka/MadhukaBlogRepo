@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>MadhukaTestAPI-seller</title>
+</head>
+<body>
+<h1>SellerAPI</h1>
+<a href="api/seller.jag?action=settabel">SetTableSeller</a><br>
+<a href="api/seller.jag?action=addseller&sellerName=testString&sellerCompany=testString&sellerAddress=testString&sellerTelphone=testString&sellerMobile=testString&sellerNIC=testString&sellerPhoneMIME=testString&sellerEmail=testString&sellerLocation=testString&sellerExtra1=testString&sellerExtra2=18&sellerExtra3=testString&sellerOut=1&">AddSeller</a><br>
+<a href="api/seller.jag?action=listseller">ListSeller</a><br>
+<a href="api/seller.jag?action=updateseller&sellerId=1&&sellerName=testString&sellerCompany=testString&sellerAddress=testString&sellerTelphone=testString&sellerMobile=testString&sellerNIC=testString&sellerPhoneMIME=testString&sellerEmail=testString&sellerLocation=testString&sellerExtra1=testString&sellerExtra2=18&sellerExtra3=testString&sellerOut=1&">UpdateSeller</a><br>
+<a href="api/seller.jag?action=getseller&sellerId=1&">GetSeller</a><br>
+<a href="api/seller.jag?action=deletseller&sellerId=1&">DeletSeller</a><br>
+<body>
+</html>

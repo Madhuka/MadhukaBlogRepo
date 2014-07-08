@@ -1,0 +1,46 @@
+<%
+
+include("../model/dbinit.jag");
+include("../model/seller.jag");
+include("../controller/seller.jag");
+
+ var action = request.getParameter('action');
+ var sellerId = request.getParameter('sellerId');
+ var sellerName = request.getParameter('sellerName');
+ var sellerCompany = request.getParameter('sellerCompany');
+ var sellerAddress = request.getParameter('sellerAddress');
+ var sellerTelphone = request.getParameter('sellerTelphone');
+ var sellerMobile = request.getParameter('sellerMobile');
+ var sellerNIC = request.getParameter('sellerNIC');
+ var sellerPhoneMIME = request.getParameter('sellerPhoneMIME');
+ var sellerEmail = request.getParameter('sellerEmail');
+ var sellerLocation = request.getParameter('sellerLocation');
+ var sellerExtra1 = request.getParameter('sellerExtra1');
+ var sellerExtra2 = request.getParameter('sellerExtra2');
+ var sellerExtra3 = request.getParameter('sellerExtra3');
+ var sellerOut = request.getParameter('sellerOut');
+
+switch(action) {
+case "listseller":
+		print(listseller());
+		break;
+	case "addseller":
+		print(addseller(sellerName, sellerCompany, sellerAddress, sellerTelphone, sellerMobile, sellerNIC, sellerPhoneMIME, sellerEmail, sellerLocation, sellerExtra1, sellerExtra2, sellerExtra3, sellerOut));
+		break;
+	case "updateseller":
+		print(updateseller(sellerId,sellerName, sellerCompany, sellerAddress, sellerTelphone, sellerMobile, sellerNIC, sellerPhoneMIME, sellerEmail, sellerLocation, sellerExtra1, sellerExtra2, sellerExtra3, sellerOut));
+		break;
+	case "deletseller":
+		print(deletseller(sellerId));
+		break;
+	case "getseller":
+		print(getseller(sellerId));
+		break;
+	case "settabel":
+		print(settabel());
+		break;
+	default:
+		print(invokeError("seller action not define"));
+}
+
+%>

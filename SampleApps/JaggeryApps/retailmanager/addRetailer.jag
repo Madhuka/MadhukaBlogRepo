@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="./dist/ico/favicon.ico">
+<!-- Bootstrap core CSS -->
+<link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="./dist/css/jumbotron.css" rel="stylesheet">
+<link href="./dist/css/alertify.bootstrap.css" rel="stylesheet">
+<link href="./dist/css/alertify.core.css" rel="stylesheet">
+<link href="./dist/css/alertify.default.css" rel="stylesheet">
+<title>Retail Manager 1.0</title>
+<% 
+include('/includes/loginCheck.jag');
+%>
+
+</head>
+
+<body>
+	<% 
+	include('/includes/topNavi.jag');
+	%>
+
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<h2>User Registration:: Add New User</h2>
+		</div>
+	</div>
+
+	<div class="container">
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="col-md-6" ng-controller="UserController">
+		
+
+					<input type="hidden" id="action" name="action"
+						ng-model="user.action" value="addseller" />
+
+
+					<tbody>
+
+						<table class="table table-hover">
+
+							<tr>
+								<td>Name* :</td>
+								<td><input type="text" id="sellerName" name="sellerName"/>
+								</td>
+							</tr>
+							<tr>
+								<td>Seller Password* :</td>
+								<td><input type="password" id="spassword" value=""/></td>
+							</tr>
+							<tr>
+								<td>Repeat Seller Password* :</td>
+								<td><input type="password" id="spassword2" value="" name="sellerPassword"/></td>
+							</tr>
+							<tr>
+								<td>Company* :</td>
+								<td><input type="text" id="sellercompany" value="" name="sellercompany"/></td>
+							</tr>
+							<tr>
+								<td>Address :</td>
+								<td><input type="text" id="selleraddress" value="" name="selleraddress"/></td>
+							</tr>
+							<tr>
+								<td>Telphone :</td>
+								<td><input type="text" id="sellertelphone" value="" name="sellertelphone"/></td>
+							</tr>
+							<tr>
+								<td>Mobile* :</td>
+								<td><input type="text" id="sellermobile" value="" name="sellermobile"/></td>
+							</tr>
+							<tr>
+								<td>NIC :</td>
+								<td><input type="text" id="sellernic" value="" name="sellernic"/></td>
+							</tr>
+							<tr>
+								<td>Phone MIME* :</td>
+								<td><input type="text" id="sellerphoneMIME" value="" name="sellerphoneMIME"/></td>
+							</tr>
+							<tr>
+								<td>Email* :</td>
+								<td><input type="text" id="selleremail" value="" name="selleremail"/></td>
+							</tr>
+							<tr>
+								<td>Location :</td>
+								<td><input type="text" id="sellerlocation" value="" name="sellerlocation"/></td>
+							</tr>						
+							</tbody>
+						</table>
+						<button class="btn btn-primary" onclick="SellersMgt.addSeller();">Register</button>
+						<button class="btn btn-primary" onclick="UserMgt.register();">Registered</button>
+						<a class="btn btn-info" href="./retailers.jag">List All Phone Retailers</a>
+							</div>
+		</div>
+
+		<hr>
+
+		<footer>
+			<p>&copy; Samsung 2014</p>
+		</footer>
+	</div>
+	<!-- /container -->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="./dist/js/jquery.min.js"></script>
+	<script src="./dist/js/bootstrap.min.js"></script>
+	<script src="./dist/js/alertify.min.js"></script>
+	<script src="./dist/js/util.js"></script>
+	<script src="./dist/js/sellermgt.js"></script>
+    <script src="./dist/js/usermgt.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="./dist/ico/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./dist/css/jumbotron.css" rel="stylesheet">
+    <link href="./dist/css/alertify.bootstrap.css" rel="stylesheet">
+	<link href="./dist/css/alertify.core.css" rel="stylesheet">
+	<link href="./dist/css/alertify.default.css" rel="stylesheet">
+    <title>Retail Manager 1.0</title>
+<% 
+include('/includes/loginCheck.jag');
+%>
+    
+  </head>
+
+  <body>
+<% 
+include('/includes/topNavi.jag');
+%>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>User Registration :: Edit User</h2>     
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row" ng-controller="viewRetailers">
+        <div class="col-md-6">   
+			<br>		    
+
+			<table class="table table-hover">
+				  <tbody>
+					<tr>
+					  <td><b>Name :</b></td>
+					  <td>
+					  <input type="text" id="seller_name" value="{{seller.seller_name}}"</input>
+					  <input type="hidden" id="seller_id" value="{{seller.seller_id}}"</input>
+					  </td>					  					
+					</tr>				
+					<tr>
+					  <td>Company :</td>
+					  <td><input type="text" id="seller_company" value="{{seller.seller_company}}"</input></td>					
+					</tr>
+					<tr>
+					  <td>Address :</td>
+					  <td><input type="text" id="seller_address" value="{{seller.seller_address}}"</input></td>					
+					</tr>
+					<tr>
+					  <td>Telphone :</td>
+					  <td><input type="text" id="seller_telphone" value="{{seller.seller_telphone}}"</input></td>					
+					</tr>
+					<tr>
+					  <td>Mobile :</td>
+					  <td><input type="text" id="seller_mobile" value="{{seller.seller_mobile}}"</input></td>					
+					</tr>
+					<tr>
+					  <td>NIC :</td>
+					  <td><input type="text" id="seller_NIC" value="{{seller.seller_NIC}}"</input></td>					
+					</tr>	
+					<tr>
+					  <td>Phone MIME :</td>
+					  <td><input type="text" id="seller_phoneMIME" value="{{seller.seller_phoneMIME}}"</input></td>					
+					</tr>	
+					<tr>
+					  <td>Email :</td>
+					  <td><input type="text" id="seller_email" value="{{seller.seller_email}}"</input></td>					
+					</tr>	
+					<tr>
+					  <td>Location :</td>
+					  <td><input type="text" id="seller_location" value="{{seller.seller_location}}"</input></td>					
+					</tr>	
+					<tr>
+					  <td><a class="btn btn-info" href="./retailers.jag">List All Phone Retailers</a></td>
+					  <td><button class="btn btn-primary" onclick="SellersMgt.updateSeller();">Save</button>
+					<button type="button" class="btn btn-danger" onclick="SellersMgt.removeSeller();">Remove</button>
+					
+				</td>					
+					</tr>					
+					</tbody>
+				</table>
+				
+        </div>       
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Samsung 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script src="./dist/js/jquery.min.js"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/alertify.min.js"></script>
+    <script src="./dist/js/angular.js"></script>
+    <script src="./dist/js/retailers.js"></script>
+    <script src="./dist/js/util.js"></script>
+    <script src="./dist/js/usermgt.js"></script>
+	<script src="./dist/js/sellermgt.js"></script>
+  </body>
+</html>

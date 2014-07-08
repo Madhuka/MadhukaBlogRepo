@@ -1,0 +1,88 @@
+<%
+
+include("../model/dbinit.jag");
+include("../model/phone.jag");
+include("../controller/phone.jag");
+
+var action = request.getParameter('action');
+var phoneId = request.getParameter('phoneId');
+var phoneName = request.getParameter('phoneName');
+var phoneIMEI = request.getParameter('phoneIMEI');
+var phoneType = request.getParameter('phoneType');
+var phoneDetail = request.getParameter('phoneDetail');
+var phoneOriginal = request.getParameter('phoneOriginal');
+var phoneIsSold = request.getParameter('phoneIsSold');
+var phoneSellerId = request.getParameter('phoneSellerId');
+var phoneCustomerName = request.getParameter('phoneCustomerName');
+var phoneCustomerTel = request.getParameter('phoneCustomerTel');
+var phoneCustomerNIC = request.getParameter('phoneCustomerNIC');
+var phoneDetails = request.getParameter('phoneDetails');
+var phoneExtra1 = request.getParameter('phoneExtra1');
+var phoneExtra2 = request.getParameter('phoneExtra2');
+var phoneExtra3 = request.getParameter('phoneExtra3');
+var phonePurchasedDate = request.getParameter('phonePurchasedDate');
+var phonePurchasedYear = request.getParameter('phonePurchasedYear');
+var phonePurchasedMonth = request.getParameter('phonePurchasedMonth');
+var phonePurchasedDay = request.getParameter('phonePurchasedDay');
+var phoneSoldYear = request.getParameter('phoneSoldYear');
+var phoneSoldMonth = request.getParameter('phoneSoldMonth');
+var phoneSoldDay = request.getParameter('phoneSoldDay');
+var UNKNOW = "unknown";
+var STR_NULL = "null";
+log.info("------------API-------------------");
+var username= session.get('LoggedInUser');
+var usernameID= session.get('LoggedInUserID');
+log.info(username);
+if (username == null){
+	print(invokeError('user is not existing in session, please login again'));
+}else{
+	switch(action) {
+		case "listphone":
+			print(listphone());
+			break;
+		case "addphone":
+			print(addphone(phoneName, phoneIMEI, phoneType, phoneDetail, phoneOriginal, phoneIsSold, phoneSellerId, phoneCustomerName, phoneCustomerTel, phoneCustomerNIC, phoneDetails, phoneExtra1, phoneExtra2, phoneExtra3, phonePurchasedDate, phonePurchasedYear, phonePurchasedMonth, phonePurchasedDay, phoneSoldYear, phoneSoldMonth, phoneSoldDay));
+			break;
+		case "purchasephone":
+			print(addphone(UNKNOW, phoneIMEI, phoneType, phoneDetail, 0, 0, usernameID, STR_NULL, STR_NULL, STR_NULL, STR_NULL, STR_NULL, STR_NULL, STR_NULL, STR_NULL, 0, 0, 0, 0, 0, 0));
+			break;
+		case "updatephone":
+			print(updatephone(phoneId,phoneName, phoneIMEI, phoneType, phoneDetail, phoneOriginal, phoneIsSold, phoneSellerId, phoneCustomerName, phoneCustomerTel, phoneCustomerNIC, phoneDetails, phoneExtra1, phoneExtra2, phoneExtra3, phonePurchasedDate, phonePurchasedYear, phonePurchasedMonth, phonePurchasedDay, phoneSoldYear, phoneSoldMonth, phoneSoldDay));
+			break;
+		case "deletphone":
+			print(deletphone(phoneId));
+			break;
+		case "getphone":
+			print(getphone(phoneId));
+			break;
+		case "getphoneByIMEI":
+			print(getphonebyimei(phoneIMEI));
+			break;
+		case "markorignalPhone":
+			print(markOrignalPhone(phoneId));
+			break;
+		case "marknotorignalPhone":
+			print(markNotOrignalPhone(phoneId));
+			break;
+		case "marksellphone":
+			print(marksellphone(phoneId));
+			break;
+		case "marknotselphone":
+			print(marknotSellphone(phoneId));
+			break;
+		case "sellphone":
+			print(sellphone(phoneIMEI,phoneCustomerName,phoneCustomerTel));
+			break;
+		case "settabel":
+			print(settabel());
+			break;
+			//for report
+		case "getphonebysaler":
+			print(getphonebysaler(phoneSellerId));
+			break;
+
+		default:
+			print(invokeError("phone action not define"));
+	}
+}
+%>

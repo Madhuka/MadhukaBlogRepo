@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="./dist/ico/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./dist/css/jumbotron.css" rel="stylesheet">
+    <link href="./dist/css/alertify.bootstrap.css" rel="stylesheet">
+	<link href="./dist/css/alertify.core.css" rel="stylesheet">
+	<link href="./dist/css/alertify.default.css" rel="stylesheet">
+    <title>Retail Manager 1.0</title>
+<% 
+include('/includes/loginCheck.jag');
+%>
+    
+  </head>
+
+  <body>
+<% 
+include('/includes/topNavi.jag');
+%>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Samsung Mobile Validator</h2>     
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row" ng-controller="viewPhones">
+        <div class="col-md-6">   
+        	<a class="btn btn-info" href="./retailers.jag">List All Phone Retailers</a>
+        	<a class="btn btn-info" href="./phones.jag">List All Phones</a>
+        	<button class="btn btn-primary" onclick="PhonesMgt.markOriginal();">Mark Original</button>
+        	<button class="btn btn-primary" onclick="PhonesMgt.markAsSold();">Mark As Sold</button>
+        	<button class="btn btn-danger" onclick="PhonesMgt.markNotOriginal();">Remove</button>
+        	
+			<br>		    
+
+			<table class="table table-hover">
+				  <tbody>
+					<tr>
+					  <td><b>Name :</b></td>
+					  <td><b>{{phone.phone_name}}</b></td>					  					
+					</tr>				
+					<tr>
+					  <td>Phone IMEI :</td>
+					  <td>{{phone.phone_IMEI}}</td>					
+					</tr>
+					<tr>
+					  <td>Type :</td>
+					  <td>{{phone.phone_type}}</td>					
+					</tr>
+					<tr>
+					  <td>Phone Detail :</td>
+					  <td>{{phone.phone_detail}}</td>					
+					</tr>
+					<tr>
+					  <td>Phone Original :</td>
+					  <td>{{phone.phone_original}}</td>					
+					</tr>
+					<tr>
+					  <td>Is Sold :</td>
+					  <td>{{phone.phone_isSold}}</td>					
+					</tr>	
+					<tr>
+					  <td>Phone Seller Id :</td>
+					  <td>{{phone.phone_sellerId}}</td>					
+					</tr>	
+					<tr>
+					  <td>Purchased Customer Name :</td>
+					  <td>{{phone.phone_customerName}}</td>					
+					</tr>	
+					<tr>
+					  <td>Purchased Customer Tel :</td>
+					  <td>{{phone.phone_customerTel}}</td>					
+					</tr>	
+					<tr>
+					  <td>Purchased Customer NIC :</td>
+					  <td>{{phone.phone_customerNIC}}</td>					
+					</tr>
+					<tr>
+					  <td>Purchase Date :</td>
+					  <td>{{phone.phone_create_time}}</td>					
+					</tr>							
+					<tr>
+					  <td>Sold Date :</td>
+					  <td>{{phone.phone_sold_time}}</td>					
+					</tr>										
+					</tbody>
+				</table>
+				<a class="btn btn-info" href="./retailers.jag">List All Phone Retailers</a>
+				<a class="btn btn-info" href="./phones.jag">List All Phones</a>
+				<button class="btn btn-danger" onclick="PhonesMgt.markNotOriginal();">Mark Not Original</button>
+        		<button class="btn btn-warning" onclick="PhonesMgt.markAsNotSold();">Mark Not Sold</button>
+        		
+        </div>       
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Samsung 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script src="./dist/js/jquery.min.js"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/alertify.min.js"></script>
+    <script src="./dist/js/angular.js"></script>
+    <script src="./dist/js/phones.js"></script>
+    <script src="./dist/js/util.js"></script>
+    <script src="./dist/js/usermgt.js"></script>
+    <script src="./dist/js/phonemgt.js"></script>
+  </body>
+</html>

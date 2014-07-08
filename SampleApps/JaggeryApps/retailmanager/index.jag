@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="./dist/ico/favicon.ico">
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./dist/css/jumbotron.css" rel="stylesheet">
+    <title>Retail Manager 1.0</title>
+<% 
+include('/includes/loginCheck.jag');
+%>
+    
+  </head>
+
+  <body>
+<% 
+include('/includes/topNavi.jag');
+%>
+
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Samsung Mobile Phones, Retail Manager 1.0</h2>
+        <p>Samsung Mobile Phones, Retail Manager Web application will show current Samsung mobile retailer in Sri Lanka, with they purchased phones ans sold phones types with dates. It can validator phone original after login into system.</p>
+        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Verify</h2>
+          <p>Samsung Mobile Phones List in market with their details.</p>
+          <p><a class="btn btn-default" href="./phones.jag" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>User Registration</h2>
+          <p>Will show the details and manager Retail Sales Manager in Sri Lanka, you can try if IMEI number structure is valid the phone</p>
+          <p><a class="btn btn-default" href="./retailers.jag" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Reports</h2>
+          <p>Samsung Phone Sales Reporter, will give sales of phones regard to timeline, retailer, customer, location each will have count upon each/composite attribute</p>
+          <p><a class="btn btn-default" href="./report.jag" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Samsung 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script src="./dist/js/jquery.min.js"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/util.js"></script>
+    <script src="./dist/js/usermgt.js"></script>
+  </body>
+</html>

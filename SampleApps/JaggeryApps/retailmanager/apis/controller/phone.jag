@@ -1,0 +1,232 @@
+<%
+
+function listphone() {
+	var db_qury = db_query_phone_view;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}
+
+function settabel() {
+	var db_qury = db_query_phone_create;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}
+
+function addphone(phoneName, phoneIMEI, phoneType, phoneDetail, phoneOriginal, phoneIsSold, phoneSellerId, phoneCustomerName, phoneCustomerTel, phoneCustomerNIC, phoneDetails, phoneExtra1, phoneExtra2, phoneExtra3, phonePurchasedDate, phonePurchasedYear, phonePurchasedMonth, phonePurchasedDay, phoneSoldYear, phoneSoldMonth, phoneSoldDay) {
+	log.info("add phone"+phonePurchasedDate);
+	//check imei is existing
+			log.info("check imei is existing");
+			var phone = getphonebyimei(phoneIMEI);
+			log.info(phone.results[0]);
+					if(phone.results.length == 0){
+	if(phoneName != null && phoneIMEI != null && phoneType != null && phoneDetail != null && phoneOriginal != null && phoneIsSold != null && phoneSellerId != null && phoneCustomerName != null && phoneCustomerTel != null && phoneCustomerNIC != null && phoneDetails != null && phoneExtra1 != null && phoneExtra2 != null && phoneExtra3 != null && phonePurchasedDate != null && phonePurchasedYear != null && phonePurchasedMonth != null && phonePurchasedDay != null && phoneSoldYear != null && phoneSoldMonth != null && phoneSoldDay != null ){
+	var db_qury = db_query_phone_add(null ,phoneName, phoneIMEI, phoneType, phoneDetail, phoneOriginal, phoneIsSold, phoneSellerId, phoneCustomerName, phoneCustomerTel, phoneCustomerNIC, phoneDetails, phoneExtra1, phoneExtra2, phoneExtra3, phonePurchasedDate, phonePurchasedYear, phonePurchasedMonth, phonePurchasedDay, phoneSoldYear, phoneSoldMonth, phoneSoldDay);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter phoneName, phoneIMEI, phoneType, phoneDetail, phoneOriginal, phoneIsSold, phoneSellerId, phoneCustomerName, phoneCustomerTel, phoneCustomerNIC, phoneDetails, phoneExtra1, phoneExtra2, phoneExtra3, phonePurchasedDate, phonePurchasedYear, phonePurchasedMonth, phonePurchasedDay, phoneSoldYear, phoneSoldMonth, phoneSoldDay");
+	}
+	}else {
+			return invokeError("phone IMEI, "+phoneIMEI+" is exisiting in system");
+		}//imei exisiting end
+}
+
+function updatephone(phoneId,phoneName, phoneIMEI, phoneType, phoneDetail, phoneOriginal, phoneIsSold, phoneSellerId, phoneCustomerName, phoneCustomerTel, phoneCustomerNIC, phoneDetails, phoneExtra1, phoneExtra2, phoneExtra3, phonePurchasedDate, phonePurchasedYear, phonePurchasedMonth, phonePurchasedDay, phoneSoldYear, phoneSoldMonth, phoneSoldDay) {
+	log.info("update phone");
+	if(phoneId != null  && phoneName != null && phoneIMEI != null && phoneType != null && phoneDetail != null && phoneOriginal != null && phoneIsSold != null && phoneSellerId != null && phoneCustomerName != null && phoneCustomerTel != null && phoneCustomerNIC != null && phoneDetails != null && phoneExtra1 != null && phoneExtra2 != null && phoneExtra3 != null && phonePurchasedDate != null && phonePurchasedYear != null && phonePurchasedMonth != null && phonePurchasedDay != null && phoneSoldYear != null && phoneSoldMonth != null && phoneSoldDay != null ){
+	var db_qury = db_query_phone_update(phoneId ,phoneName, phoneIMEI, phoneType, phoneDetail, phoneOriginal, phoneIsSold, phoneSellerId, phoneCustomerName, phoneCustomerTel, phoneCustomerNIC, phoneDetails, phoneExtra1, phoneExtra2, phoneExtra3, phonePurchasedDate, phonePurchasedYear, phonePurchasedMonth, phonePurchasedDay, phoneSoldYear, phoneSoldMonth, phoneSoldDay);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter phoneId, phoneName, phoneIMEI, phoneType, phoneDetail, phoneOriginal, phoneIsSold, phoneSellerId, phoneCustomerName, phoneCustomerTel, phoneCustomerNIC, phoneDetails, phoneExtra1, phoneExtra2, phoneExtra3, phonePurchasedDate, phonePurchasedYear, phonePurchasedMonth, phonePurchasedDay, phoneSoldYear, phoneSoldMonth, phoneSoldDay");
+	}
+	
+}
+
+//markOrignalPhone addins 
+function markOrignalPhone(phoneId) {
+	log.info("mark Orignal Phone");
+	if(phoneId != null ){
+	var db_qury = db_query_phone_orignal_update(phoneId);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter phoneId");
+	}
+}
+
+//markNotOrignalPhone addins
+function markNotOrignalPhone(phoneId) {
+	log.info("mark Not Orignal Phone");
+	if(phoneId != null ){
+	var db_qury = db_query_phone_notorignal_update(phoneId);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter phoneId");
+	}
+}
+
+function deletphone(phoneId) {
+	log.info("delet phone ");
+	if(phoneId != null ){
+	var db_qury = db_query_phone_delet(phoneId);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter phoneId");
+	}
+}
+
+function getphone(phoneId) {
+	log.info("get phone ");
+	if(phoneId != null ){
+	var db_qury = db_query_phone_get(phoneId);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter phoneId");
+	}
+}
+
+function getphonebyimei(phoneIMEI) {
+	log.info("get phone ");
+	if(phoneIMEI != null ){
+	var db_qury = db_query_phone_get_byimei(phoneIMEI);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter phone IMEI");
+	}
+}
+
+//sell a phone
+function sellphone(phoneIMEI,cn,cc) {
+	log.info(phoneIMEI+" is Sold phone ");
+	if(phoneIMEI != null ){
+		//check imei is existing 
+		log.info("check imei is existing");
+		var phone = getphonebyimei(phoneIMEI);
+		log.info(phone.results[0]);
+		if(phone.results.length == 1){
+			//checking phone is under loged in user 
+			if(phone.results[0].phone_sellerId == session.get('LoggedInUserID')){
+				if(phone.results[0].phone_isSold){
+					return invokeError(username+", phone IMEI, "+phoneIMEI+" is already sold");
+										
+				}
+	//var db_qury = db_query_phone_get(phoneId);
+	var db_qury = db_query_sell_phone(phoneIMEI,cn,cc);
+		
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	//end of chk seller id
+	}else {
+			return invokeError(session.get('LoggedInUser')+"("+usernameID+"), phone IMEI, "+phoneIMEI+" is not under you account");
+	}
+		}else {
+		return invokeError("phone IMEI, "+phoneIMEI+" is not exisiting in system");
+	}//imei exisiting end
+	}else {
+		return invokeError("Please enter phoneIMEI");
+	}
+}
+
+//mark as sold
+function marksellphone(phoneId) {
+	log.info("marked as sold phone ");
+	if(phoneId != null ){
+	//var db_qury = db_query_phone_get(phoneId);
+	var db_qury = db_query_phone_sell(phoneId);
+		
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter phoneId");
+	}
+}
+
+//mark as not sold
+function marknotSellphone(phoneId) {
+	log.info("marked as not sold phone ");
+	if(phoneId != null ){
+	var db_qury = db_query_phone_notsell(phoneId);
+		
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else {
+		return invokeError("Please enter phoneId");
+	}
+}
+
+
+//for reportting
+
+function getphonebysaler(sellerID) {
+	var db_qury = db_query_getphonebysaler(sellerID);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}
+
+
+function invokeError(msg) {
+	log.info(msg);
+	return {
+		"error" : true,
+		"errorMsg" : msg
+	};
+}
+
+%>

@@ -1,0 +1,24 @@
+<%
+var db_query_seller_view = "SELECT * FROM  `seller` LIMIT 0 , 200";
+var db_query_seller_create = "CREATE TABLE  `seller` (`seller_id` INT NOT NULL AUTO_INCREMENT, `seller_name` VARCHAR( 120 ) NOT NULL, `seller_company` VARCHAR( 120 ) NOT NULL, `seller_address` VARCHAR( 120 ) NOT NULL, `seller_telphone` VARCHAR( 120 ) NOT NULL, `seller_mobile` VARCHAR( 120 ) NOT NULL, `seller_NIC` VARCHAR( 120 ) NOT NULL, `seller_phoneMIME` VARCHAR( 120 ) NOT NULL, `seller_email` VARCHAR( 120 ) NOT NULL, `seller_location` VARCHAR( 120 ) NOT NULL, `seller_extra1` VARCHAR( 120 ) NOT NULL, `seller_extra2` INT NOT NULL, `seller_extra3` VARCHAR( 120 ) NOT NULL, `seller_out` BOOL NOT NULL DEFAULT  '1',`seller_create_time` TIMESTAMP NOT NULL ,`seller_modified_time` TIMESTAMP NOT NULL ,PRIMARY KEY (  `seller_id` ))";
+
+function db_query_seller_delet(seller_id) {
+var outStr = "DELETE FROM `seller` WHERE `seller_id` = " + seller_id + " LIMIT 1";
+return outStr;
+}
+
+function db_query_seller_get(seller_id) {
+var outStr = "SELECT *  FROM `seller` WHERE `seller_id` = " + seller_id + " LIMIT 1";
+return outStr;
+}
+
+function db_query_seller_add(seller_id,seller_name,seller_company,seller_address,seller_telphone,seller_mobile,seller_NIC,seller_phoneMIME,seller_email,seller_location,seller_extra1,seller_extra2,seller_extra3,seller_out) {
+var outStr = "INSERT INTO  `seller` (`seller_id`, `seller_name`, `seller_company`, `seller_address`, `seller_telphone`, `seller_mobile`, `seller_NIC`, `seller_phoneMIME`, `seller_email`, `seller_location`, `seller_extra1`, `seller_extra2`, `seller_extra3`, `seller_out`,`seller_create_time` ,`seller_modified_time`)VALUES ("+seller_id+",'"+seller_name+"','"+seller_company+"','"+seller_address+"','"+seller_telphone+"','"+seller_mobile+"','"+seller_NIC+"','"+seller_phoneMIME+"','"+seller_email+"','"+seller_location+"','"+seller_extra1+"','"+seller_extra2+"','"+seller_extra3+"','"+seller_out+"',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);";
+return outStr;
+}
+
+function db_query_seller_update(seller_id,seller_name,seller_company,seller_address,seller_telphone,seller_mobile,seller_NIC,seller_phoneMIME,seller_email,seller_location,seller_extra1,seller_extra2,seller_extra3,seller_out) {
+var outStr = "UPDATE  `seller` SET  `seller_name` =  '"+seller_name+"',`seller_company` =  '"+seller_company+"',`seller_address` =  '"+seller_address+"',`seller_telphone` =  '"+seller_telphone+"',`seller_mobile` =  '"+seller_mobile+"',`seller_NIC` =  '"+seller_NIC+"',`seller_phoneMIME` =  '"+seller_phoneMIME+"',`seller_email` =  '"+seller_email+"',`seller_location` =  '"+seller_location+"',`seller_extra1` =  '"+seller_extra1+"',`seller_extra2` =  '"+seller_extra2+"',`seller_extra3` =  '"+seller_extra3+"',`seller_out` =  '"+seller_out+"',`seller_modified_time` = CURRENT_TIMESTAMP WHERE  `seller_id` =" + seller_id + " LIMIT 1 ;";
+return outStr;
+}
+%>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="./dist/ico/favicon.ico">
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./dist/css/jumbotron.css" rel="stylesheet">
+    <link href="./dist/css/alertify.bootstrap.css" rel="stylesheet">
+	<link href="./dist/css/alertify.core.css" rel="stylesheet">
+	<link href="./dist/css/alertify.default.css" rel="stylesheet">
+    <title>Retail Manager 1.0</title>
+<% 
+include('/includes/loginCheck.jag');
+%>
+    
+  </head>
+
+  <body>
+<% 
+include('/includes/topNavi.jag');
+%>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+      <div class="container">
+        <h2>Samsung Mobile Verify</h2>     
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-12" ng-controller="phones">
+        	<table class="table table-hover">
+				  <thead>
+					<tr>
+					  <th>ID</th>
+					  <th>IMEI</th>
+					  <th>Type</th>
+					  <th>Seller Id</th>
+					  <th>Is Original</th>
+					  <th></th>
+					</tr>
+				  </thead>
+				  <tbody>
+				  
+					<tr ng-repeat="phone in phones">
+					  <td>{{phone.phone_id}}</td>
+					  <td>{{phone.phone_IMEI}}</td>
+					  <td>{{phone.phone_type}}</td>
+					  <td><a href="./viewRetailer.jag?sellerID={{phone.phone_sellerId}}" >{{phone.phone_sellerId}}</a></td>
+					  <td>{{phone.phone_original}}</td>
+					  <td>
+						<a class="btn btn-info" href="./viewPhone.jag?phoneID={{phone.phone_id}}" >View</a>
+						<a class="btn btn-primary" href="./editRetailer.jag?sellerID={{phone.phone_id}}" >Edit</a>
+						
+					  </td>
+					</tr>			
+					
+				  </tbody>
+				</table>
+        </div> 
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Samsung 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./dist/js/jquery.min.js"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/util.js"></script>
+    <script src="./dist/js/usermgt.js"></script>
+    <script src="./dist/js/angular.js"></script>
+    <script src="./dist/js/retailers.js"></script>
+    <script src="./dist/js/phones.js"></script>
+	<script src="./dist/js/sellermgt.js"></script>
+	<script src="./dist/js/alertify.min.js"></script>
+  </body>
+</html>

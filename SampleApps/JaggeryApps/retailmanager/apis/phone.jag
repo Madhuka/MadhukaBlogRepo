@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>MadhukaTestAPI-phone</title>
+</head>
+<body>
+<h1>PhoneAPI</h1>
+<a href="api/phone.jag?action=settabel">SetTablePhone</a><br>
+<a href="api/phone.jag?action=addphone&phoneName=testString&phoneIMEI=testString&phoneType=testString&phoneDetail=testString&phoneOriginal=1&phoneIsSold=1&phoneSellerId=18&phoneCustomerName=testString&phoneCustomerTel=testString&phoneCustomerNIC=testString&phoneDetails=testString&phoneExtra1=testString&phoneExtra2=testString&phoneExtra3=testString&phonePurchasedDate=testString&phonePurchasedYear=18&phonePurchasedMonth=18&phonePurchasedDay=18&phoneSoldYear=18&phoneSoldMonth=18&phoneSoldDay=18&">AddPhone</a><br>
+<a href="api/phone.jag?action=listphone">ListPhone</a><br>
+<a href="api/phone.jag?action=updatephone&phoneId=1&&phoneName=testString&phoneIMEI=testString&phoneType=testString&phoneDetail=testString&phoneOriginal=1&phoneIsSold=1&phoneSellerId=18&phoneCustomerName=testString&phoneCustomerTel=testString&phoneCustomerNIC=testString&phoneDetails=testString&phoneExtra1=testString&phoneExtra2=testString&phoneExtra3=testString&phonePurchasedDate=testString&phonePurchasedYear=18&phonePurchasedMonth=18&phonePurchasedDay=18&phoneSoldYear=18&phoneSoldMonth=18&phoneSoldDay=18&">UpdatePhone</a><br>
+<a href="api/phone.jag?action=getphone&phoneId=1&">GetPhone</a><br>
+<a href="api/phone.jag?action=deletphone&phoneId=1&">DeletPhone</a><br>
+<a href="api/phone.jag?action=markorignalPhone&phoneId=18&">MarkOriginal</a><br>
+<a href="api/phone.jag?action=marknotorignalPhone&phoneId=18&">MarkNotOriginal</a><br>
+<a href="api/phone.jag?action=sellphone&phoneId=18&">SellPhone</a><br>
+<a href="api/phone.jag?action=notselphone&phoneId=18&">SellPhone</a><br>
+<body>
+</html>

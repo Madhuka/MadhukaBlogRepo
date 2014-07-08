@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="./dist/ico/favicon.ico">
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./dist/css/jumbotron.css" rel="stylesheet">
+    <link href="./dist/css/alertify.bootstrap.css" rel="stylesheet">
+	<link href="./dist/css/alertify.core.css" rel="stylesheet">
+	<link href="./dist/css/alertify.default.css" rel="stylesheet">
+	<link href="./dist/css/alertify.default.css" rel="stylesheet">
+	<link href="./dist/css/jquery.datetimepicker.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href=""/>
+    <title>Retail Manager 1.0</title>
+<% 
+include('/includes/loginCheck.jag');
+%>
+    
+  </head>
+
+  <body>
+<% 
+include('/includes/topNavi.jag');
+%>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+      <div class="container">
+        <h2>Samsung Phone Sales Reports</h2>     
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+                <div class="col-md-12">
+				<table class="table table-hover">
+
+					<tbody>
+
+						<tr>
+							<td>Select Retailer</td>
+							<td>
+								<div ng-controller="retailers">
+									<select id="saler" data-ng-model="sellers[0]"
+										data-ng-options="act.seller_name +' - ' + act.seller_id  for act in sellers">
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Device Orignal</td>
+							<td><select id="org">
+									<option value="0">Not Original</option>
+									<option value="1">Original</option>
+									<option value="2">Not Consider</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>Device Sales State</td>
+							<td><select id="sale">
+									<option value="0">Sold</option>
+									<option value="1">Not Sold</option>
+									<option value="2">Any</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>From --> To</td>
+							<td>
+						<input type="text" id="datetimepicker1"/><br><br>
+						<input type="text" id="datetimepicker2"/><br><br>	</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<button class="btn btn-primary" onclick="ReportMgt.genReport();">List</button>
+						</td>
+						</tr>
+						</tbody>
+				</table>
+				<div id="listrole"></div>
+			</div> 
+      </div>
+
+	
+      <hr>
+
+      <footer>
+        <p>&copy; Samsung 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./dist/js/jquery.min.js"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/jquery.datetimepicker.js"></script>
+    <script src="./dist/js/util.js"></script>
+    <script src="./dist/js/usermgt.js"></script>
+    <script src="./dist/js/angular.js"></script>
+    <script src="./dist/js/retailers.js"></script>
+	<script src="./dist/js/sellermgt.js"></script>
+	<script src="./dist/js/reportmgt.js"></script>
+	<script src="./dist/js/alertify.min.js"></script>
+	<script src="./dist/js/mustache.js"></script>
+	      
+        <script>
+
+$('#datetimepicker1').datetimepicker({
+	//yearOffset:222,
+	timepicker:false,
+	format:'d/m/Y',
+	formatDate:'Y/m/d',
+	//minDate:'-1970/01/02', // yesterday is minimum date
+	//maxDate:'+1970/01/02' // and tommorow is maximum date calendar
+});
+
+$('#datetimepicker2').datetimepicker({
+	timepicker:false,
+	format:'d/m/Y',
+	formatDate:'Y/m/d'
+});
+</script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="./dist/ico/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./dist/css/jumbotron.css" rel="stylesheet">
+    <link href="./dist/css/alertify.bootstrap.css" rel="stylesheet">
+	<link href="./dist/css/alertify.core.css" rel="stylesheet">
+	<link href="./dist/css/alertify.default.css" rel="stylesheet">
+    <title>Retail Manager 1.0</title>
+<% 
+include('/includes/loginCheck.jag');
+%>
+    
+  </head>
+
+  <body>
+<% 
+include('/includes/topNavi.jag');
+%>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Users</h2>     
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-12" ng-controller="retailers">
+        <a class="btn btn-primary" href="./addRetailer.jag" role="button">Add New Phone Retailer</a>
+        	<table class="table table-hover">
+				  <thead>
+					<tr>
+					  <th>ID</th>
+					  <th>Name</th>
+					  <th>Company</th>
+					  <th>Mobile</th>
+					  <th>email</th>
+					  <th></th>
+					</tr>
+				  </thead>
+				  <tbody>
+				  
+					<tr ng-repeat="seller in sellers">
+					  <td>{{seller.seller_id}}</td>
+					  <td>{{seller.seller_name}}</td>
+					  <td>{{seller.seller_company}}</td>
+					  <td>{{seller.seller_mobile}}</td>
+					  <td>{{seller.seller_email}}</td>
+					  <td>
+						<a class="btn btn-info" href="./viewRetailer.jag?sellerID={{seller.seller_id}}" >View</a>
+						<a class="btn btn-primary" href="./editRetailer.jag?sellerID={{seller.seller_id}}" >Edit</a>
+						
+					  </td>
+					</tr>			
+					
+				  </tbody>
+				</table>
+        </div>       
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Samsung 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./dist/js/jquery.min.js"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/util.js"></script>
+    <script src="./dist/js/usermgt.js"></script>
+    <script src="./dist/js/angular.js"></script>
+    <script src="./dist/js/retailers.js"></script>
+	<script src="./dist/js/sellermgt.js"></script>
+	<script src="./dist/js/alertify.min.js"></script>
+  </body>
+</html>
